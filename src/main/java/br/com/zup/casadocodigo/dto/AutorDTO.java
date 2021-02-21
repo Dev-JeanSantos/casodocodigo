@@ -8,15 +8,15 @@ import br.com.zup.casadocodigo.entities.Autor;
 
 public class AutorDTO {
 	
-	@NotBlank
+	@NotBlank(message = "O campo nome não deve ser vazio")
 	private String nome;
-	@NotBlank
-	@Email
+	@NotBlank(message = "O campo email não deve ser vazio")
+	@Email(message = "Email inválido")
 	private String email;
-	@NotBlank
-	@Size(max = 400)
+	@NotBlank(message = "O campo descrição não deve ser vazio")
+	@Size(max = 400, message = "O campo descrição não deve ultrapasar 400 caracteres")
 	private String descricao;
-
+	
 	public String getNome() {
 		return nome;
 	}

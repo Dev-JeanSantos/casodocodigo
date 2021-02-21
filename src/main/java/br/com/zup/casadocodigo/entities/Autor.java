@@ -2,6 +2,7 @@ package br.com.zup.casadocodigo.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Autor {
 	private String nome;
 	@NotBlank
 	@Email
+	@Column(unique = true)
 	private String email;
 	@NotBlank
 	@Size(max = 400)
@@ -30,6 +32,11 @@ public class Autor {
 	
 	private LocalDateTime dataCriacao = LocalDateTime.now();	
 	
+	@Deprecated
+	public Autor() {
+		
+	}
+
 	public Autor(String nome, String email, String descricao) {
 
 		this.nome = nome;
@@ -52,7 +59,7 @@ public class Autor {
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Autor [id=" + id + ", nome=" + nome + ", email=" + email + ", descricao=" + descricao + ", dataCriacao="
