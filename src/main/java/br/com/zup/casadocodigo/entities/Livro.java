@@ -30,9 +30,12 @@ public class Livro {
 	private @NotBlank String isbn;
 	private @Future @NotNull LocalDate dataPublicacao;
 	private @NotNull @ManyToOne Categoria categoria;
-	private @NotNull @ManyToOne Autor autor;
-
+	private @NotNull @ManyToOne Autor autor;	
 	
+	public Livro() {
+		
+	}
+
 	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotNull String sumario,
 			@NotBlank @Min(20) BigDecimal preco, @NotBlank @Min(100) int numeroPaginas, @NotBlank String isbn,
 			@Future @NotNull LocalDate dataPublicacao, @NotNull Categoria categoria, @NotNull Autor autor) {
@@ -44,10 +47,16 @@ public class Livro {
 				this.isbn = isbn;
 				this.dataPublicacao = dataPublicacao;
 				this.categoria = categoria;
-				this.autor = autor;
-		
+				this.autor = autor;		
 	}
-
+	
+	public Long getId() {
+		return id;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	
 	@Override
 	public String toString() {
 		return "Livro [id=" + id + ", titulo=" + titulo + ", resumo=" + resumo + ", sumario=" + sumario + ", preco="
