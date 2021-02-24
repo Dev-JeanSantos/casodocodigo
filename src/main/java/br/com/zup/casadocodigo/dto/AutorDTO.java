@@ -1,10 +1,15 @@
 package br.com.zup.casadocodigo.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.zup.casadocodigo.entities.Autor;
+import br.com.zup.casadocodigo.entities.Livro;
 
 public class AutorDTO {
 	
@@ -17,6 +22,9 @@ public class AutorDTO {
 	@Size(max = 400, message = "O campo descrição não deve ultrapasar 400 caracteres")
 	private String descricao;
 	
+	@OneToMany(mappedBy = "autor")
+	private List<Livro> livros = new ArrayList<>();
+	
 	public String getNome() {
 		return nome;
 	}
@@ -28,10 +36,13 @@ public class AutorDTO {
 	public String getDescricao() {
 		return descricao;
 	}
+	public List<Livro> getLivros() {
+		return livros;
+	}
 
 	public Autor saveAuto() {
 		
-		return new Autor( nome, email, descricao);
+		return new Autor(nome, email, descricao);
 	}
 	
 }
